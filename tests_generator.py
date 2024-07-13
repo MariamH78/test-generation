@@ -2,6 +2,9 @@ from datetime import datetime
 import csv
 import warnings
 
+from validate_input import validate_input
+
+
 class TestsGenerator:
     """
     A class to generate test cases based on user input options.
@@ -24,13 +27,16 @@ class TestsGenerator:
         Initializes the TestsGenerator with user input and generates test cases.
 
         Args:
-            user_input (dict): A dictionary containing user input, expected to
-                               have been validated first.
+            user_input (dict): A dictionary containing user input.
 
         Raises:
             Warning: If the number of options is greater than 7, a warning is issued.
         """
 
+        # Validate the input first,
+        validate_input(user_input)
+
+        # then initiailze the class members and generate the tests.
         self.options = user_input['options']
         self.options = [str(option) for option in self.options]
 
