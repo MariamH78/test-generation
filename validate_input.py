@@ -60,10 +60,12 @@ def validate_input(user_input):
         raise NoOptionsKeyError
 
     options = user_input['options']
-    options = [str(option) for option in options]
 
     if not options:
         raise EmptyOptionsError
+        
+    options = [str(option) for option in options]
+
 
     if bad_options:= has_special_characters(options):
         raise SpecialCharactersError(bad_options)
