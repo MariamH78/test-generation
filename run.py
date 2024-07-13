@@ -1,7 +1,7 @@
 import argparse
 import yaml
 
-from input_validator import InputValidator
+from validate_input import validate_input
 from tests_generator import TestsGenerator
 
 parser = argparse.ArgumentParser()
@@ -9,11 +9,11 @@ parser.add_argument("input_yaml", help="The path and name of the input options f
 args = parser.parse_args()
 
 with open(args.input_yaml, 'r') as file:
-    input = yaml.safe_load(file)
+    user_input = yaml.safe_load(file)
 
 # Validate the input first,
-InputValidator(input)
+validate_input(user_input)
 
 # then generate the tests.
-generator = TestsGenerator(input)
+generator = TestsGenerator(user_input)
 generator.create_csv()
