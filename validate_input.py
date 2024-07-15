@@ -63,9 +63,14 @@ def validate_input(user_input):
 
     if not options:
         raise EmptyOptionsError
-        
+    
+    if any(option is None for option in options):
+        raise BlankOptionError
+    
     options = [str(option) for option in options]
 
+    if any(not option for option in options):
+        raise BlankOptionError
 
     if bad_options:= has_special_characters(options):
         raise SpecialCharactersError(bad_options)
